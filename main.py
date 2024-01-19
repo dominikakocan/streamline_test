@@ -8,21 +8,6 @@ import pypdfium2 as pdfium
 
 st.set_page_config(layout="wide")
 
-def visualize_pagination(images, key = 'original'):
-    placeholder = st.empty()
-    bottom_menu = st.columns((4, 1))
-    with bottom_menu[1]:
-        total_pages = len(images) if isinstance(images, list) else 1
-        current_page = st.number_input(
-            "Page", min_value=1, max_value=total_pages, step=1, key = key)
-    with bottom_menu[0]:
-        st.markdown(f"Page **{current_page}** of **{total_pages}** ")
-    with placeholder:
-        try:
-            st.image(images[current_page - 1])
-        except TypeError:
-            st.image(images)
-
 
 def show_original(placeholder):
     placeholder.image(st.session_state.images[st.session_state.current_page - 1])
